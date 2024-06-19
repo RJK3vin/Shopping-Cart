@@ -1,0 +1,11 @@
+.navigationbar {
+    display: flex;
+    align-items: center; 
+    background-color: black;
+  }
+  
+  h1 {
+    margin-right: 20px; 
+  }
+  
+  
