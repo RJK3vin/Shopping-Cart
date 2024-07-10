@@ -4,9 +4,9 @@ const Cart = () => {
     return (
         <div>
             <button>Checkout</button>
-            
+        <Link to="/">
             <button>Close</button>
-            
+        </Link>
         </div>
     )
 }

@@ -1,39 +1,57 @@
-import { Link } from "react-router-dom";
 import './App.css';
 import { useState } from "react";
+import Navbar from "./Navbar";
 
-const App = () => {
+function Showdisplay ({show, setShow, products, handleClick, }) {
+  return show ? <div><h3 style = {{ color: "gray" }}>The Best Shopping Page in the World</h3> <button onClick={setShow}>Shop Now</button></div> : <ShowProducts products={products} onClick={handleClick}/>
 
-  const [counter, setCounter] = useState(0)
-  
-  return (
-  <>
-    <div className="navigationbar">
-      <h1 style = {{ color: "lightblue" }}>RJ's Shopping Page</h1>
-      <Link to="/">
-        <button>Home Page</button>
-      </Link>
-      <Link to="/shopping">
-        <button>Shopping Page</button>
-      </Link>
-      <Link to="/cart">
-        <button style = {{height: "40px", width: "45px"}}>
-          <img style = {{height: "30px", width: "30px"}}src="https://media.istockphoto.com/id/1206806317/vector/shopping-cart-icon-isolated-on-white-background.jpg?s=612x612&w=0&k=20&c=1RRQJs5NDhcB67necQn1WCpJX2YMfWZ4rYi1DFKlkNA="></img>  
-        </button>
-      </Link>
-      <p style = {{ color: "red" }}>{counter}</p>
-    </div>
-
-    <div>
-      <h3 style = {{ color: "gray" }}>
-        The Best Shopping Page in the World
-      </h3>
-      <Link to="/shopping">
-        <button>Shop Now</button>
-      </Link>
-    </div>
-  </>
-  )
 }
 
-export default App;
+function ShowProducts(props) {
+  return (
+    <>
+      <div>
+          {props.products.map((product) => {
+            return <button key={product.id} onClick={() => props.onClick(product)}>{product.name}</button>;
+          })}
+      </div>
+    </>
+  );
+}
+
+
+export default function App() {
+
+  const [show, setShow] = useState(true)
+  const [counter, setCounter] = useState(0)
+  const [products, setProducts] = useState([
+            {name: "Add Shirt to cart", id: 1},
+            {name: "Add shorts to cart", id: 2},
+            {name: "Add Underwear to cart", id: 3},
+        ])
+  const [cart, setCart] = useState([])
+
+  function testing(product) {
+      setCounter(counter + 1)
+      setCart([...cart, product])
+      console.log(product)
+    }
+  
+
+  return (
+  <>
+    <Navbar setShow = {setShow} counter = {counter} />   
+    <Showdisplay show = {show} setShow = {() => setShow(false)} products={products} handleClick={testing}/>
+    <p>Cart: </p>
+    {cart.map(cart => (
+      <p key={cart.id}>{cart.name}</p> 
+    ))}
+  </>  
+  )
+    
+    
+    
+// one array with all the items as jsons. Another empty array. Anytime I click on one of the item buttons, copy that json and push it to the empty array. Then set the new array state. 
+  
+}
+
