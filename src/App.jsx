@@ -2,23 +2,15 @@ import './App.css';
 import { useState } from "react";
 import Navbar from "./Navbar";
 
-function Showdisplay ({show, setShow, products, handleClick, }) {
-  return show ? <div><h3 style = {{ color: "gray" }}>The Best Shopping Page in the World</h3> <button onClick={setShow}>Shop Now</button></div> : <ShowProducts products={products} onClick={handleClick}/>
-
-}
-
-function ShowProducts(props) {
-  return (
-    <>
-      <div>
-          {props.products.map((product) => {
-            return <button key={product.id} onClick={() => props.onClick(product)}>{product.name}</button>;
-          })}
-      </div>
-    </>
-  );
-}
-
+function ShowProducts({show, setShow, products, handleClick }) {
+  return show ? <div> <h3 style = {{ color: "gray" }}>The Best Shopping Page in the World</h3>  <button onClick={setShow}>Shop Now</button> </div> 
+  : 
+  <div> 
+    {products.map((product) => (
+      <button key={product.id} products={products} onClick = {(event) => handleClick(event, product)}>{product.name}</button>
+    ))}
+  </div>
+}  
 
 export default function App() {
 
@@ -31,27 +23,22 @@ export default function App() {
         ])
   const [cart, setCart] = useState([])
 
-  function testing(product) {
+  function testing(event, product) {
       setCounter(counter + 1)
       setCart([...cart, product])
       console.log(product)
+      console.log(event)
     }
   
-
   return (
   <>
     <Navbar setShow = {setShow} counter = {counter} />   
-    <Showdisplay show = {show} setShow = {() => setShow(false)} products={products} handleClick={testing}/>
+    <ShowProducts show = {show} setShow={() => setShow(false)} products={products} handleClick={testing}/>
     <p>Cart: </p>
     {cart.map(cart => (
       <p key={cart.id}>{cart.name}</p> 
     ))}
   </>  
-  )
-    
-    
-    
-// one array with all the items as jsons. Another empty array. Anytime I click on one of the item buttons, copy that json and push it to the empty array. Then set the new array state. 
-  
+  )  
 }
 
