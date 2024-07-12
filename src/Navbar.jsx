@@ -6,7 +6,7 @@ const Navbar = (props) => {
 
     return (
         <div className="navigationbar">
-      <h1 style = {{ color: "lightblue" }}>RJ's Shopping Page</h1>
+      <h1 style = {{ color: "red" }}>RJ's Shopping Page</h1>
         <button onClick={() => props.setShow(true)}>Home Page</button>
         <button onClick={() => props.setShow(false)}>Shopping Page</button>
       <Link to="/cart">
