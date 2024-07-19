@@ -1,11 +1,10 @@
 import './App.css';
 import { useState } from "react";
 import Navbar from "./Navbar";
-import products_api from './product-api';
 import { useEffect } from 'react';
 
 function ShowProducts({show, setShow, datas, manageClick }) {
-  return show ? <div> <h3 style = {{ color: "red" }}>The Best Clothing Shopping Page in the World</h3>  <button onClick={setShow}>Shop Now</button> </div> 
+  return show ? <div> <h3 style = {{ color: "red" }}>The Best Shopping Page in the World</h3>  <button onClick={setShow}>Shop Now</button> </div> 
   : 
   <>
   <div>
@@ -23,7 +22,9 @@ export default function App() {
 
   const [datas, setDatas] = useState([])
   useEffect(() => {
-    setDatas(products_api);
+    fetch('https://fakestoreapi.com/products/')
+            .then(res=>res.json())
+            .then(json => {setDatas(json)})
   }, []);
 
   const [cart, setCart] = useState({})
