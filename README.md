@@ -1,8 +1,11 @@
-# React + Vite
+# Shopping-Cart
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This was my submission to [this odin project](https://www.theodinproject.com/lessons/node-path-react-new-shopping-cart)
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+-   The App component manages the state of product data fetched from an API, cart items, and visibility of the shopping and home page. The Navbar component provides a navigation bar at the top allowing users to navigate between pages
+    
+-   The ShowProducts component displays the product data and enables users to add products to the cart, a state that is updated dynamically with item counts and total prices
+
+- I used CSS to style the Navbar, sizing, color, and margins for HTML elements.
