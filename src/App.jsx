@@ -22,7 +22,7 @@ export default function App() {
 
   const [datas, setDatas] = useState([])
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products/')
+    fetch('https://fakestoreapi.com/products/category/men\'s clothing')
             .then(res=>res.json())
             .then(json => {setDatas(json)})
   }, []);
@@ -79,7 +79,7 @@ export default function App() {
     {Object.keys(cart).map((key) => (
           <p key={key} style = {{ color: "red" }}>{key}: ${cart[key].totalPrice}<button style = {{ width: 20, height: 20 }} onClick={(event) => {Downcount(event, cart, key)}}>-</button> {cart[key].count} <button style = {{ width: 20, height: 20}} onClick={(event) => {Upcount(event, cart, key)}}>+</button></p> 
     ))}
-    <p style = {{ color: "red" }}>$: {total}</p>
+    <p style = {{ color: "red" }}>Total Price $: {total}</p>
     </div>
   </>  
   )  
